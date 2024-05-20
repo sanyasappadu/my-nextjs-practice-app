@@ -42,28 +42,27 @@ export default function SignupPage() {
     return (
         <div className="flex flex-col items-center justify-center min-h-screen py-2">
             <h1 className="text-2xl font-bold mb-4">{loading ? "Processing..." : "Signup"}</h1>
-            <hr className="mb-4 w-full max-w-md" />
-            <label htmlFor="username" className="self-start max-w-md w-full">Username</label>
+            <label htmlFor="username" >Username</label>
             <input 
-                className="p-2 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:border-gray-600 text-black max-w-md w-full"
+        className="p-2 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:border-gray-600 text-black"
                 id="username"
                 type="text"
                 value={user.username}
                 onChange={(e) => setUser({...user, username: e.target.value})}
                 placeholder="Username"
             />
-            <label htmlFor="email" className="self-start max-w-md w-full">Email</label>
+            <label htmlFor="email" >Email</label>
             <input 
-                className="p-2 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:border-gray-600 text-black max-w-md w-full"
+        className="p-2 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:border-gray-600 text-black"
                 id="email"
                 type="email"
                 value={user.email}
                 onChange={(e) => setUser({...user, email: e.target.value})}
                 placeholder="Email"
             />
-            <label htmlFor="password" className="self-start max-w-md w-full">Password</label>
+            <label htmlFor="password" >Password</label>
             <input 
-                className="p-2 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:border-gray-600 text-black max-w-md w-full"
+        className="p-2 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:border-gray-600 text-black"
                 id="password"
                 type="password"
                 value={user.password}
@@ -73,7 +72,7 @@ export default function SignupPage() {
             <button
                 onClick={onSignup}
                 disabled={buttonDisabled}
-                className={`p-2 border rounded-lg mb-4 focus:outline-none max-w-md w-full ${buttonDisabled ? "border-gray-300 bg-gray-100 text-gray-500 cursor-not-allowed" : "border-gray-300 bg-blue-500 text-white hover:bg-blue-600"}`}
+                className={`p-2 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:border-gray-600 ${buttonDisabled ? "border-gray-300 bg-gray-100 text-gray-500 cursor-not-allowed" : "border-gray-300 bg-blue-500 text-white hover:bg-blue-600"}`}
             >
                 {buttonDisabled ? "No signup" : "Signup"}
             </button>
