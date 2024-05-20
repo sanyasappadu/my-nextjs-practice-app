@@ -1,63 +1,50 @@
-// pages/index.js
-"use client"
-import { useState } from 'react';
+"use client";
+import axios from "axios";
+import Link from "next/link";
+import React, {useState} from "react";
+import {toast} from "react-hot-toast";
+import {useRouter} from "next/navigation";
 
-export default function Home() {
-  const [formData, setFormData] = useState({ name: '', email: '', password: '' });
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    try {
-      const res = await fetch('/api/users', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
-      });
-      const data = await res.json();
-      if (data.success) {
-        alert('User created successfully!');
-      } else {
-        alert('Error creating user: ' + data.error);
-      }
-    } catch (error) {
-      alert('Error: ' + error.message);
+export default function ProfilePage() {
+    const router = useRouter()
+    const [data, setData] = useState("nothing")
+    const logout = async () => {
+        try {
+            await axios.get('/api/users/logout')
+            toast.success('Logout successful')
+            router.push('/login')
+        } catch (error) {
+            console.log(error.message);
+            toast.error(error.message)
+        }
     }
-  };
 
-  return (
-    <div>
-      <h1>Register User</h1>
-      <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          name="name"
-          placeholder="Name"
-          value={formData.name}
-          onChange={handleChange}
-        />
-        <input
-          type="email"
-          name="email"
-          placeholder="Email"
-          value={formData.email}
-          onChange={handleChange}
-        />
-        <input
-          type="password"
-          name="password"
-          placeholder="Password"
-          value={formData.password}
-          onChange={handleChange}
-        />
-        <button type="submit">Register</button>
-      </form>
-    </div>
-  );
+    // const getUserDetails = async () => {
+    //     const res = await axios.get('/api/users/me')
+    //     console.log(res.data);
+    //     setData(res.data.data._id)
+    // }
+
+    return (
+        <div className="flex flex-col items-center justify-center min-h-screen py-2">
+            <h1>Profile</h1>
+            <hr />
+            <p>Profile page</p>
+            <h2 className="p-1 rounded bg-green-500">{data === 'nothing' ? "Nothing" : <Link href={`/profile/${data}`}>{data}
+            </Link>}</h2>
+        <hr />
+        <button
+        onClick={logout}
+        className="bg-blue-500 mt-4 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+        >Logout</button>
+
+        {/* <button
+        onClick={getUserDetails}
+        className="bg-green-800 mt-4 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+        >GetUser Details</button> */}
+
+
+            </div>
+    )
 }
