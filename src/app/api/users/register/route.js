@@ -4,7 +4,7 @@ import bcryptjs from "bcryptjs";
 import { NextResponse } from "next/server";
 
 // Establish database connection
-connect();
+connect()
 
 export async function POST(request) {
   try {
