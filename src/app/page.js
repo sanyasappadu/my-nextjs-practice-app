@@ -72,7 +72,7 @@ export default function Home() {
                   <p>Category: {task.category}</p>
                 </div>
                 <div className="flex flex-col ">
-                  <Link href={`/editTask/${task._id}`}>update</Link>
+                  <Link href={`/editTask/${task._id}`}>Update</Link>
                   <button onClick={() => deleteTask(task._id)}>Delete</button>
                 </div>
               </div>

@@ -40,43 +40,66 @@ export default function SignupPage() {
     }, [user]);
 
     return (
-        <div className="flex flex-col items-center justify-center min-h-screen py-2">
-            <h1 className="text-2xl font-bold mb-4">{loading ? "Processing..." : "Signup"}</h1>
-            <label htmlFor="username" >Username</label>
-            <input 
-        className="p-2 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:border-gray-600 text-black"
-                id="username"
-                type="text"
-                value={user.username}
-                onChange={(e) => setUser({...user, username: e.target.value})}
-                placeholder="Username"
-            />
-            <label htmlFor="email" >Email</label>
-            <input 
-        className="p-2 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:border-gray-600 text-black"
-                id="email"
-                type="email"
-                value={user.email}
-                onChange={(e) => setUser({...user, email: e.target.value})}
-                placeholder="Email"
-            />
-            <label htmlFor="password" >Password</label>
-            <input 
-        className="p-2 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:border-gray-600 text-black"
-                id="password"
-                type="password"
-                value={user.password}
-                onChange={(e) => setUser({...user, password: e.target.value})}
-                placeholder="Password"
-            />
-            <button
-                onClick={onSignup}
-                disabled={buttonDisabled}
-                className={`p-2 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:border-gray-600 ${buttonDisabled ? "border-gray-300 bg-gray-100 text-gray-500 cursor-not-allowed" : "border-gray-300 bg-blue-500 text-white hover:bg-blue-600"}`}
-            >
-                {buttonDisabled ? "No signup" : "Signup"}
-            </button>
-            <Link href="/login" className="text-blue-500 hover:underline">Visit login page</Link>
+        <div className="flex flex-col items-center justify-center min-h-screen py-2 text-black dark:text-white bg-gray-200 dark:bg-gray-600 h-screen w-full">
+            <div className="max-w-md m-auto border rounded-lg border-gray-300 dark:border-white shadow-md">
+                <div className="bg-gray-300 dark:bg-gray-700 p-6 rounded-t-lg text-center">
+                    <h1 className="text-xl font-semibold">{loading ? "Processing..." : "Signup"}</h1>
+                </div>
+
+                <div className="p-6">
+                    <div className="mb-4 flex flex-row">
+                        <label htmlFor="username" className="block text-sm m-2 font-medium">Username</label>
+                        <input 
+                            className="p-2 w-full border border-gray-300 rounded-lg focus:outline-none focus:border-gray-600 text-black"
+                            id="username"
+                            type="text"
+                            value={user.username}
+                            onChange={(e) => setUser({ ...user, username: e.target.value })}
+                            placeholder="Username"
+                        />
+                    </div>
+
+                    <div className="mb-4 flex flex-row">
+                        <label htmlFor="email" className="block text-sm m-2 font-medium">Email</label>
+                        <input 
+                            className="p-2 w-full border border-gray-300 rounded-lg focus:outline-none focus:border-gray-600 text-black"
+                            id="email"
+                            type="email"
+                            value={user.email}
+                            onChange={(e) => setUser({ ...user, email: e.target.value })}
+                            placeholder="Email"
+                        />
+                    </div>
+
+                    <div className="mb-4 flex flex-row">
+                        <label htmlFor="password" className="block text-sm m-2 font-medium">Password</label>
+                        <input 
+                            className="p-2 w-full border border-gray-300 rounded-lg focus:outline-none focus:border-gray-600 text-black"
+                            id="password"
+                            type="password"
+                            value={user.password}
+                            onChange={(e) => setUser({ ...user, password: e.target.value })}
+                            placeholder="Password"
+                        />
+                    </div>
+
+                    <button
+                        onClick={onSignup}
+                        disabled={buttonDisabled}
+                        className={`p-2 w-full border rounded-lg transition duration-300 focus:outline-none focus:border-gray-600 ${
+                            buttonDisabled
+                                ? "bg-gray-300 text-gray-500 cursor-not-allowed"
+                                : "bg-blue-500 text-white hover:bg-blue-600"
+                        }`}
+                    >
+                        {buttonDisabled ? "Enter details to sign up" : "Sign Up"}
+                    </button>
+
+                    <div className="mt-4 text-center">
+                        <Link href="/login" className="text-blue-500 hover:underline">Already have an account? Login</Link>
+                    </div>
+                </div>
+            </div>
         </div>
     );
 }
