@@ -2,7 +2,7 @@
 import { useState } from "react";
 import ReactDOM from "react";
 
-export default function page() {
+export default function Page() {
   const [inputs, setInputs] = useState({
     heading: "",
     description: "",
