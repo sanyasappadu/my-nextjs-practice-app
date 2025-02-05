@@ -4,10 +4,11 @@ import Task from "@/models/Task";
 import { NextResponse } from "next/server";
 
 // Establish database connection
-connect();
 
 export async function GET(request) {
   try {
+    await connect(); // Ensure database connection before query execution
+
     // Extract the ID from the URL
     const url = new URL(request.url);
     const id = url.pathname.split("/").pop(); // Assumes ID is the last segment in the URL
@@ -28,6 +29,8 @@ export async function GET(request) {
 
 export async function PUT(request) {
   try {
+    await connect(); // Ensure database connection before query execution
+
     // Extract the ID from the URL
     const url = new URL(request.url);
     const id = url.pathname.split("/").pop(); // Assumes ID is the last segment in the URL
@@ -60,6 +63,8 @@ export async function PUT(request) {
 
 export async function DELETE(request) {
   try {
+    await connect(); // Ensure database connection before query execution
+
     // Extract the ID from the URL
     const url = new URL(request.url);
     const id = url.pathname.split("/").pop(); // Assumes ID is the last segment in the URL

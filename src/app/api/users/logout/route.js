@@ -3,6 +3,8 @@ import { NextResponse } from "next/server";
 
 export async function GET() {
     try {
+        await connect(); // Ensure database connection before query execution
+
         const response = NextResponse.json(
             {
                 message: "Logout successful",
